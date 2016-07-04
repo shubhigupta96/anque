@@ -1,0 +1,24 @@
+create table user(username varchar(30) primary key, password varchar(30) NOT NULL);
+
+create table topic(topic_id int(30) primary key auto_increment, topic_name varchar(30) NOT NULL);
+
+create table follow(follower varchar(30), following varchar(30),foreign key(follower) references user(username), foreign key(following) references user(username));
+
+create table question(question_id int(30) primary key auto_increment, que varchar(250), username varchar(30), foreign key(username) references user(username));
+
+create table ans(ans_id int(30) primary key auto_increment, que_id int(30),ans varchar(2000), username varchar(30), foreign key(username) references user(username), foreign key(que_id) references question(question_id));
+
+create table user_ans_like(username varchar(30),ans_id int(30), foreign key(username) references user(username), foreign key(ans_id) references ans(ans_id));
+
+create table choose(topic_id int(30), username varchar(30), foreign key(topic_id) references topic(topic_id), foreign key(username) references user(username));
+
+create table que_topic(que_id int(30) , topic_id int(30), foreign key(que_id) references question(question_id), foreign key(topic_id) references topic(topic_id));
+
+insert into topic(topic_name) values('Science')
+insert into topic(topic_name) values('Music')
+insert into topic(topic_name) values('Food')
+insert into topic(topic_name) values('Entertainment')
+insert into topic(topic_name) values('Technology')
+insert into topic(topic_name) values('Fiction')
+insert into topic(topic_name) values('Politics')
+insert into topic(topic_name) values('Nature')
